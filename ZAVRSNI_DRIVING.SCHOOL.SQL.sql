@@ -1,0 +1,159 @@
+
+use master;
+go
+
+drop database if exists DRIVING_SCHOOL;
+
+go
+create database DRIVING_SCHOOL;
+
+use DRIVING_SCHOOL;
+
+create table INSTRUCTOR(
+	ID int not null primary key identity (1,1),
+	FIRST_NAME varchar (50),
+	LAST_NAME varchar (50),
+	DRIVER_LICENSE_NUMBER varchar (50),
+	EMAIL varchar (50),
+	CONTACT_NUMBER varchar (20)
+	);
+
+create table VEHICLE(
+	ID int not null primary key identity (1,1),
+	TYPE varchar (25) not null,
+	BRAND varchar (25),
+	MODEL varchar (25),
+	PURCHASE_DATE datetime,
+	DATE_OF_REGISTRATION datetime 
+	);
+
+create table COURSE(
+	ID int not null primary key identity (1,1),
+	ID_INSTRUCTOR int not null,
+	);
+
+create table STUDENT(
+	ID int not null primary key identity (1,1),
+	FIRST_NAME varchar (15) not null,
+	LAST_NAME varchar (15) not null,
+	ADDRESS varchar (50),
+	OIB char (11) not null,
+	CONTACT_NUMBER varchar (25) not null,
+	DATE_OF_ENROLLMENT datetime not null,
+);
+
+create table STATUS(
+	ID int not null primary key identity (1,1),
+	DESCRIPTION varchar (50) not null
+	);
+
+create table CATEGORY(
+	ID int not null primary key identity (1,1),
+	NAME varchar (50) not null,
+	PRICE decimal not null,
+	NUMBER_OF_TR_LECTURES varchar (50) not null,
+	NUMBER_OF_DRIVING_LECTURES varchar (50) not null
+	);
+
+	alter table COURSE add foreign key (ID_INSTRUCTOR) references INSTRUCTOR(ID);
+	alter table COURSE add ID_VEHICLE int not null;
+	alter table COURSE add ID_CATEGORY int not null;
+	alter table COURSE add foreign key (ID_VEHICLE) references VEHICLE(ID);
+	alter table COURSE add foreign key (ID_CATEGORY) references CATEGORY(ID);
+	alter table STUDENT add ID_STATUS int not null;
+	alter table STUDENT add foreign key (ID_STATUS) references STATUS(ID);
+	alter table COURSE add START_DATE datetime not null;
+
+	create table STUDENT_COURSE(
+		ID int not null primary key identity (1,1),
+		ID_student int not null,
+		ID_course int not null);
+
+	alter table STUDENT_COURSE add foreign key (ID_student) references STUDENT(ID);
+	alter table STUDENT_COURSE add foreign key (ID_course) references COURSE(ID);
+	
+insert into STATUS(DESCRIPTION)
+	values
+	('ENROLLED'),
+	('LISTENING TR'),
+	('WAITING ON TR EXAM'),
+	('LISTENING FA'),
+	('WAITING FA EXAM'),
+	('WAITING DL'),
+	('DRIVING LESSONS'),
+	('WAITING DL EXAM'),
+	('WAITING HAK'),
+	('DISMISSED');
+
+insert into INSTRUCTOR(FIRST_NAME,LAST_NAME,DRIVER_LICENSE_NUMBER,EMAIL,CONTACT_NUMBER)
+	values 
+	('MARKO','MILANOVIC','54961388','milanovicm@gmail.com','0914691225'),
+	('DARIJA','LENIC','46991127','lenicd@gmail.com','0957731626'),
+	('IVAN','MARIC','14236945','maricm@gmail.com','0914631231'),
+	('MAGDALENA','DEVIC','69664382','devicm@gmail.com','0974545097'),
+	('KRISTIJAN','BENO','32363478','benok@gmail.com','0953316383');
+
+insert into VEHICLE(TYPE,BRAND,MODEL,PURCHASE_DATE,DATE_OF_REGISTRATION)
+	values
+	('CAR','VOLKSWAGEN','POLO 1,6 TDI','2020-06-05 00:00:00','2023-02-05 00:00:00'),
+	('MOTORCYCLE','YAMAHA','MT_07','2020-01-05 00:00:00','2023-01-02 00:00:00'),
+	('TRUCK','MAN','TGL','2022-11-09 00:00:00','2023-05-05 00:00:00'),
+	('CAR','PEUGEOT','308 1.6 HDI','2019-11-09 00:00:00','2023-06-01 00:00:00'),
+	('MOTORCYCLE','KAWASAKI', 'Z400','2020-10-15 00:00:00','2023-03-26 00:00:00');
+	
+insert into CATEGORY(NAME,PRICE,NUMBER_OF_TR_LECTURES,NUMBER_OF_DRIVING_LECTURES)
+values 
+	('A','866.67','30','35'),
+	('A2','866.67','30','35'),
+	('B','813.75','30','25'),
+	('C','556.88','15','15');
+
+insert into STUDENT(FIRST_NAME,LAST_NAME,ADDRESS,OIB,CONTACT_NUMBER,DATE_OF_ENROLLMENT,ID_STATUS)
+values
+	('IVAN','STOLIC','ANDRIJE HEBRANGA 52','46957944261','0914648269','2023-06-06 00:00:00','1'),
+	('MATIJA','LUMPI','JOSIPA KOZARCA 112','32649851391','0953979461','2023-06-07 00:00:00','1'),
+	('MARINA','PALIC','BRACE RADIC 1','55469647812','0974567139','2022-03-05 00:00:00','2'),
+	('KATARINA','CERCIN','MATIJE GUPCA 35','64913215217','0919896921','2023-06-01 00:00:00','1'),
+	('MARKO','KRPIC','J.J.STROSSMAYERA 77','64997316145','0951297646','2023-02-02 00:00:00','4'),
+	('MARKO','MARKOVIC','S.S.KRANJCEVICA 7','94613871649','0916496923','2023-03-05 00:00:00','2'),
+	('LUCIJA','KARLOVIC','A.E.MIROLJUBA 71','46167923164','0957476261','2022-12-05 00:00:00','8'),
+	('LEDA','IVIC','ISTARSKA 96','23461611798','0973164959','2022-12-01 00:00:00','8'),
+	('SILVIO','BARIC','IVANA GUNDULICA 55','12324269791','0973236163','2023-03-03 00:00:00','5'),
+	('MONIKA','KEK','MATIJE GUPCA 1A','31697631912','0912346659','2022-12-12 00:00:00','9'),
+	('HRVOJE','MARIC','SAVSKA 22','46132621567','0953366779','2023-01-21 00:00:00','9'),
+	('MAJA','MAJER','SUNCANA 6','31697991697','0913314798','2023-01-31 00:00:00','8'),
+	('ENA','KRESTA','DRINSKA 9','21369461321','0971924696','2023-03-08 00:00:00','5'),
+	('KARLO','LIPIC','KRALJA ZVONIMIRA 41','64321212821','0955456954','2023-04-09 00:00:00','4'),
+	('ANDREA','MIRINOVIC','NOVA 83','86498945987','0919946496','2023-04-21 00:00:00','3');
+	
+
+insert into COURSE(ID_INSTRUCTOR,ID_VEHICLE,ID_CATEGORY,START_DATE)
+	values
+		('1','1','1','2023-06-06 17:00:00'),
+		('2','2','2','2023-05-02 17:00:00'),
+		('3','3','3','2023-01-01 17:00:00'),
+		('4','4','4','2023-02-01 17:00:00'),
+		('5','5','3','2023-03-01 17:00:00');
+
+insert into STUDENT_COURSE(ID_student,ID_course)
+	values
+		('1','1'),
+		('2','1'),
+		('3','1'),
+		('4','2'),
+		('5','2'),
+		('6','2'),
+		('7','3'),
+		('8','3'),
+		('9','3'),
+		('10','4'),
+		('11','4'),
+		('12','4'),
+		('13','5'),
+		('14','5'),
+		('15','5');
+		
+		
+
+
+
