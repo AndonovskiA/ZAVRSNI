@@ -88,7 +88,6 @@ insert into STATUS(DESCRIPTION)
 insert into INSTRUCTOR(FIRST_NAME,LAST_NAME,DRIVER_LICENSE_NUMBER,EMAIL,CONTACT_NUMBER)
 	values 
 	('MARKO','MILANOVIC','54961388','milanovicm@gmail.com','0914691225'),
-	('DARIJA','LENIC','46991127','lenicd@gmail.com','0957731626'),
 	('IVAN','MARIC','14236945','maricm@gmail.com','0914631231'),
 	('MAGDALENA','DEVIC','69664382','devicm@gmail.com','0974545097'),
 	('KRISTIJAN','BENO','32363478','benok@gmail.com','0953316383');
@@ -97,7 +96,6 @@ insert into VEHICLE(TYPE,BRAND,MODEL,PURCHASE_DATE,DATE_OF_REGISTRATION)
 	values
 	('CAR','VOLKSWAGEN','POLO 1,6 TDI','2020-06-05 00:00:00','2023-02-05 00:00:00'),
 	('MOTORCYCLE','YAMAHA','MT_07','2020-01-05 00:00:00','2023-01-02 00:00:00'),
-	('TRUCK','MAN','TGL','2022-11-09 00:00:00','2023-05-05 00:00:00'),
 	('CAR','PEUGEOT','308 1.6 HDI','2019-11-09 00:00:00','2023-06-01 00:00:00'),
 	('MOTORCYCLE','KAWASAKI', 'Z400','2020-10-15 00:00:00','2023-03-26 00:00:00');
 	
@@ -105,8 +103,7 @@ insert into CATEGORY(NAME,PRICE,NUMBER_OF_TR_LECTURES,NUMBER_OF_DRIVING_LECTURES
 values 
 	('A','866.67','30','35'),
 	('A2','866.67','30','35'),
-	('B','813.75','30','25'),
-	('C','556.88','15','15');
+	('B','813.75','30','25');
 
 insert into STUDENT(FIRST_NAME,LAST_NAME,ADDRESS,OIB,CONTACT_NUMBER,DATE_OF_ENROLLMENT,ID_STATUS)
 values
@@ -129,31 +126,12 @@ values
 
 insert into COURSE(ID_INSTRUCTOR,ID_VEHICLE,ID_CATEGORY,START_DATE)
 	values
-		('1','1','1','2023-06-06 17:00:00'),
-		('2','2','2','2023-05-02 17:00:00'),
-		('3','3','3','2023-01-01 17:00:00'),
-		('4','4','4','2023-02-01 17:00:00'),
-		('5','5','3','2023-03-01 17:00:00');
-
-insert into STUDENT_COURSE(ID_student,ID_course)
-	values
-		('1','1'),
-		('2','1'),
-		('3','1'),
-		('4','2'),
-		('5','2'),
-		('6','2'),
-		('7','3'),
-		('8','3'),
-		('9','3'),
-		('10','4'),
-		('11','4'),
-		('12','4'),
-		('13','5'),
-		('14','5'),
-		('15','5');
-		
-		
+		('1','1','1','2023-02-05 17:00:00'),
+		('2','2','2','2023-01-12 17:00:00'),
+		('3','3','3','2023-01-01 17:00:00');
 
 
-
+-- select naredbe za vjezbu
+-- koju vrstu vozila vozi koji student
+--???
+--???
