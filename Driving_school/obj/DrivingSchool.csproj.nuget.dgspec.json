@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Anja\\Desktop\\DrivingSchool Pepy - Copy\\DrivingSchool.csproj": {}
+    "C:\\Users\\Anja\\Documents\\ZAVRSNI\\Driving_school\\DrivingSchool.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Anja\\Desktop\\DrivingSchool Pepy - Copy\\DrivingSchool.csproj": {
+    "C:\\Users\\Anja\\Documents\\ZAVRSNI\\Driving_school\\DrivingSchool.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Anja\\Desktop\\DrivingSchool Pepy - Copy\\DrivingSchool.csproj",
+        "projectUniqueName": "C:\\Users\\Anja\\Documents\\ZAVRSNI\\Driving_school\\DrivingSchool.csproj",
         "projectName": "DrivingSchool",
-        "projectPath": "C:\\Users\\Anja\\Desktop\\DrivingSchool Pepy - Copy\\DrivingSchool.csproj",
+        "projectPath": "C:\\Users\\Anja\\Documents\\ZAVRSNI\\Driving_school\\DrivingSchool.csproj",
         "packagesPath": "C:\\Users\\Anja\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Anja\\Desktop\\DrivingSchool Pepy - Copy\\obj\\",
+        "outputPath": "C:\\Users\\Anja\\Documents\\ZAVRSNI\\Driving_school\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

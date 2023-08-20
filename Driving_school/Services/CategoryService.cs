@@ -34,6 +34,7 @@ namespace DrivingSchool.Services
             {
                 case 1:
                     ShowCategories("show");
+                    Console.ReadKey();
                     break;
                 case 2:
                     EntryNewCategory();

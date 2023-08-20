@@ -35,7 +35,8 @@ namespace DrivingSchool.Services
             "OPTION HAS TO BE NUMBER FROM 1-2\n", 1, 2))
             {
                 case 1:
-                    ShowStatus();                                            
+                    ShowStatus();  
+                    Console.ReadKey();
                     break;
                 case 2:
                     Console.WriteLine(" DONE WORKING WITH STATUS MENU");

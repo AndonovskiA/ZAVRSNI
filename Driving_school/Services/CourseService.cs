@@ -36,6 +36,7 @@ namespace DrivingSchool.Services
                     break;
                 case 1:
                     ShowCourse("show");
+                    Console.ReadKey();
                     break;
                 case 3:
                     EditStartDate();

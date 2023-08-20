@@ -34,7 +34,7 @@ namespace DrivingSchool.Services
             {
                 case 1:
                     ShowInstructors("show");
-                   
+                    Console.ReadKey();
                     break;
                 case 2:
                     EntryNewInstructor();                    

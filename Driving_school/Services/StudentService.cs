@@ -38,6 +38,7 @@ namespace DrivingSchool.Services
                     break;
                 case 1:
                     ShowStudents("show");
+                    Console.ReadKey();
                     break;
                 case 3:
                      EditStudent();
