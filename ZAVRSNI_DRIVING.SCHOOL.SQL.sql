@@ -131,7 +131,3 @@ insert into COURSE(ID_INSTRUCTOR,ID_VEHICLE,ID_CATEGORY,START_DATE)
 		('3','3','3','2023-01-01 17:00:00');
 
 
--- select naredbe za vjezbu
--- koju vrstu vozila vozi koji student
---???
---???

@@ -5,10 +5,10 @@ namespace DrivingSchoolWebApi.Models
 {
     public class Category : ENT
     {
-        public string Name { get; set; }
-        public decimal Price { get; set; }
-        public int NumberOfTRLectures { get; set; }
-        public int NumberOfDrivingLectures { get; set; }
+        public string NAME { get; set; }
+        public decimal PRICE { get; set; }
+        public int NUMBER_OF_TR_LECTURES { get; set; }
+        public int NUMBER_OF_DRIVING_LECTURES { get; set; }
 
        
     }

@@ -1,14 +1,20 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
 
+
+
+
+
+
+
 namespace DrivingSchoolWebApi.Models
 {
     public class Instructor : ENT
     {
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public int DriverLicenceNumber { get; set; }
-        public string EMail { get; set; }
-        public long ContactNumber { get; set; }
+        public string? FIRST_NAME { get; set; }
+        public string? LAST_NAME { get; set; }
+        public string? DRIVER_LICENSE_NUMBER { get; set; }
+        public string? EMAIL { get; set; }
+        public string? CONTACT_NUMBER { get; set; }
     }
 }
