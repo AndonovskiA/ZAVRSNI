@@ -8,11 +8,11 @@ namespace DrivingSchoolWebApi.Controllers
     [ApiController]
     [Route("api/v1/[controller]")]
 
-    public class CategoryCtrl : ControllerBase
+    public class CategoryController : ControllerBase
     {
         private readonly Context _context;
 
-        public CategoryCtrl(Context context) 
+        public CategoryController(Context context) 
         {
             _context = context;
         }
@@ -127,13 +127,13 @@ namespace DrivingSchoolWebApi.Controllers
                 _context.Category.Remove(cateBase);
                 _context.SaveChanges();
 
-                return new JsonResult("{\"poruka\":\"Deleted\"}");
+                return new JsonResult("{\"message\":\"Deleted\"}");
 
             }
             catch (Exception ex)
             {
 
-                return new JsonResult("{\"poruka\":\"Can not be deleted\"}");
+                return new JsonResult("{\"message\":\"Can not be deleted\"}");
 
             }
         }

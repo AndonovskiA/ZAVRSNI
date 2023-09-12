@@ -10,5 +10,7 @@
         public DateTime DATE_OF_ENROLLMENT { get; set; }
 
         public ICollection<Course> Courses { get; } = new List<Course>();
+
+        
     }
 }

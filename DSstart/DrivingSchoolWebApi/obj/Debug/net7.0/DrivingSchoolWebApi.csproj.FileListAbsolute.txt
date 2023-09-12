@@ -68,8 +68,8 @@ C:\Users\Anja\Desktop\csharp doma\DSstart\DrivingSchoolWebApi\obj\Debug\net7.0\r
 C:\Users\Anja\Desktop\csharp doma\DSstart\DrivingSchoolWebApi\obj\Debug\net7.0\DrivingSchoolWebApi.pdb
 C:\Users\Anja\Desktop\csharp doma\DSstart\DrivingSchoolWebApi\obj\Debug\net7.0\DrivingSchoolWebApi.genruntimeconfig.cache
 C:\Users\Anja\Desktop\csharp doma\DSstart\DrivingSchoolWebApi\obj\Debug\net7.0\ref\DrivingSchoolWebApi.dll
-C:\Users\Anja\Documents\ZAVRSNI\DSstart\DrivingSchoolWebApi\bin\Debug\net7.0\appsettings.json
 C:\Users\Anja\Documents\ZAVRSNI\DSstart\DrivingSchoolWebApi\bin\Debug\net7.0\appsettings.Development.json
+C:\Users\Anja\Documents\ZAVRSNI\DSstart\DrivingSchoolWebApi\bin\Debug\net7.0\appsettings.json
 C:\Users\Anja\Documents\ZAVRSNI\DSstart\DrivingSchoolWebApi\bin\Debug\net7.0\DrivingSchoolWebApi.exe
 C:\Users\Anja\Documents\ZAVRSNI\DSstart\DrivingSchoolWebApi\bin\Debug\net7.0\DrivingSchoolWebApi.deps.json
 C:\Users\Anja\Documents\ZAVRSNI\DSstart\DrivingSchoolWebApi\bin\Debug\net7.0\DrivingSchoolWebApi.runtimeconfig.json

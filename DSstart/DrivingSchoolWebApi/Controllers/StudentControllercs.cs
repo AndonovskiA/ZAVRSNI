@@ -7,8 +7,8 @@ using System.Net;
 
 namespace DrivingSchoolWebApi.Controllers
 {
-    public class StudentControllercs
-    {
+   
+    
         [ApiController]
         [Route("api/v1/[controller]")]
 
@@ -149,36 +149,20 @@ namespace DrivingSchoolWebApi.Controllers
                     _context.Student.Remove(studentBase);
                     _context.SaveChanges();
 
-                    return new JsonResult("{\"poruka\":\"Deleted\"}");
+                    return new JsonResult("{\"message\":\"Deleted\"}");
 
                 }
                 catch (Exception ex)
                 {
 
-                    return new JsonResult("{\"poruka\":\"Can not be deleted\"}");
+                    return new JsonResult("{\"message\":\"Can not be deleted\"}");
 
                 }
 
             }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
         }
 
 
-
-
-
     }
-}
+
