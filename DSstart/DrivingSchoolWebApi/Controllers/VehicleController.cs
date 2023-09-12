@@ -9,11 +9,11 @@ namespace DrivingSchoolWebApi.Controllers
     [ApiController]
     [Route("api/v1/[controller]")]
 
-    public class VehicleCtrl : Controller
+    public class VehicleController : Controller
     {
         private readonly Context _context;
 
-        public VehicleCtrl(Context context)
+        public VehicleController(Context context)
         {
             _context = context;
         }
@@ -87,25 +87,25 @@ namespace DrivingSchoolWebApi.Controllers
 
             try
             {
-                var vehVe = _context.Vehicle.Find(ID);
-                if (vehVe == null)
+                var vehicleBase = _context.Vehicle.Find(ID);
+                if (vehicleBase == null)
                 {
                     return BadRequest();
                 }
                 // inače se rade Mapper-i
                 // mi ćemo za sada ručno
 
-                vehVe.TYPE = vehicle.TYPE;
-                vehVe.BRAND = vehicle.BRAND;
-                vehVe.MODEL = vehicle.MODEL;
-                vehVe.PURCHASE_DATE=vehicle.PURCHASE_DATE;
-                vehVe.DATE_OF_REGISTRATION=vehicle.DATE_OF_REGISTRATION;
+                vehicleBase.TYPE = vehicle.TYPE;
+                vehicleBase.BRAND = vehicle.BRAND;
+                vehicleBase.MODEL = vehicle.MODEL;
+                vehicleBase.PURCHASE_DATE=vehicle.PURCHASE_DATE;
+                vehicleBase.DATE_OF_REGISTRATION=vehicle.DATE_OF_REGISTRATION;
                 
 
-                _context.Vehicle.Update(vehVe);
+                _context.Vehicle.Update(vehicleBase);
                 _context.SaveChanges();
 
-                return StatusCode(StatusCodes.Status200OK, vehVe);
+                return StatusCode(StatusCodes.Status200OK, vehicleBase);
 
             }
             catch (Exception ex)
@@ -119,12 +119,35 @@ namespace DrivingSchoolWebApi.Controllers
         [HttpDelete]
         [Route("{ID:int}")]
         [Produces("application/json")]
-        public IActionResult Delete(int vehicle)
-        {
-            // Delete in base
-            return StatusCode(StatusCodes.Status200OK, "{\"deleted\":true}");
-        }
 
+        public IActionResult Delete(int ID)
+        {
+            if (ID <= 0)
+            {
+                return BadRequest();
+            }
+
+            var vehicleBase = _context.Vehicle.Find(ID);
+            if (vehicleBase == null)
+            {
+                return BadRequest();
+            }
+
+            try
+            {
+                _context.Vehicle.Remove(vehicleBase);
+                _context.SaveChanges();
+
+                return new JsonResult("{\"poruka\":\"Deleted\"}");
+
+            }
+            catch (Exception ex)
+            {
+
+                return new JsonResult("{\"poruka\":\"Can not be deleted\"}");
+
+            }
+        }
 
 
     }

@@ -1,18 +1,20 @@
 ﻿using DrivingSchoolWebApi.Data;
 using DrivingSchoolWebApi.Models;
+
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.Data.SqlClient;
+
 
 namespace DrivingSchoolWebApi.Controllers
 {
     [ApiController]
     [Route("api/v1/[controller]")]
 
-    public class CategoryCtrl : ControllerBase
+    public class InstructorController : ControllerBase
     {
         private readonly Context _context;
 
-        public CategoryCtrl(Context context) 
+        public InstructorController(Context context)
         {
             _context = context;
         }
@@ -26,24 +28,24 @@ namespace DrivingSchoolWebApi.Controllers
             }
             try
             {
-                var categories = _context.Category.ToList();
-                if (categories == null || categories.Count == 0)
+                var instructors = _context.Instructor.ToList();
+                if (instructors == null || instructors.Count == 0)
                 {
                     return new EmptyResult();
                 }
-                return new JsonResult(_context.Category.ToList());
+                return new JsonResult(_context.Instructor.ToList());
             }
             catch (Exception ex)
             {
                 return StatusCode(StatusCodes.Status503ServiceUnavailable,
                                         ex.Message);
             }
+
         }
 
         [HttpPost]
-        public IActionResult Post(Category category)
+        public IActionResult Post(Instructor instructor)
         {
-
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -51,47 +53,52 @@ namespace DrivingSchoolWebApi.Controllers
 
             try
             {
-                _context.Category.Add(category);
+                _context.Instructor.Add(instructor);
                 _context.SaveChanges();
-                return StatusCode(StatusCodes.Status201Created, category);
+                return StatusCode(StatusCodes.Status201Created, instructor);
             }
             catch (Exception ex)
             {
                 return StatusCode(StatusCodes.Status503ServiceUnavailable,
                                    ex.Message);
             }
+
+
+
         }
 
 
         [HttpPut]
         [Route("{ID:int}")]
-        public IActionResult Put(int ID, Category category)
+
+        public IActionResult Put(int ID, Instructor instructor)
         {
-            // Change in base
-            if (ID <= 0 || category == null)
+
+            if (ID <= 0 || instructor == null)
             {
                 return BadRequest();
             }
 
             try
             {
-                var cateBa = _context.Category.Find(ID);
-                if (cateBa == null)
+                var instructorBase = _context.Instructor.Find(ID);
+                if (instructorBase == null)
                 {
                     return BadRequest();
                 }
                 // inače se rade Mapper-i
                 // mi ćemo za sada ručno
 
-                cateBa.NAME=category.NAME;
-                cateBa.PRICE=category.PRICE;
-                cateBa.NUMBER_OF_TR_LECTURES = category.NUMBER_OF_TR_LECTURES;
-                cateBa.NUMBER_OF_DRIVING_LECTURES = category.NUMBER_OF_DRIVING_LECTURES;
+                instructorBase.FIRST_NAME = instructor.FIRST_NAME;
+                instructorBase.LAST_NAME = instructor.LAST_NAME;
+                instructorBase.DRIVER_LICENSE_NUMBER = instructor.DRIVER_LICENSE_NUMBER;
+                instructorBase.EMAIL = instructor.EMAIL;
+                instructorBase.CONTACT_NUMBER = instructor.CONTACT_NUMBER;
 
-                _context.Category.Update(cateBa);
+                _context.Instructor.Update(instructorBase);
                 _context.SaveChanges();
 
-                return StatusCode(StatusCodes.Status200OK, cateBa);
+                return StatusCode(StatusCodes.Status200OK, instructorBase);
 
             }
             catch (Exception ex)
@@ -101,22 +108,46 @@ namespace DrivingSchoolWebApi.Controllers
                 // nije dobro vraćati cijeli ex ali za dev je OK
             }
 
-
-
         }
-
-
-
 
         [HttpDelete]
         [Route("{ID:int}")]
         [Produces("application/json")]
-        public IActionResult Delete(int category)
+        public IActionResult Delete(int ID)
         {
-            // Delete in base
-            return StatusCode(StatusCodes.Status200OK, "{\"deleted\":true}");
+            if (ID <= 0)
+            {
+                return BadRequest();
+            }
+
+            var instructorBase = _context.Instructor.Find(ID);
+            if (instructorBase == null)
+            {
+                return BadRequest();
+            }
+
+            try
+            {
+                _context.Instructor.Remove(instructorBase);
+                _context.SaveChanges();
+
+                return new JsonResult("{\"poruka\":\"Deleted\"}");
+
+            }
+            catch (Exception ex)
+            {
+
+                return new JsonResult("{\"poruka\":\"Can not be deleted\"}");
+
+            }
         }
 
 
     }
 }
+
+
+
+        
+    
+
