@@ -20,19 +20,20 @@ namespace DrivingSchoolWebApi.Data
 
         public DbSet<Student> Student { get; set; }
 
-        
+        public  DbSet<Course>Course { get; set; }
+
         protected override void OnModelCreating(
            ModelBuilder modelBuilder)
         {
             //  1:n
-            modelBuilder.Entity<Course>().HasOne(v => v.Vehicle);
-            modelBuilder.Entity<Course>().HasOne(i => i.Instructor);
-            modelBuilder.Entity<Course>().HasOne(c => c.Category);
+            modelBuilder.Entity<Course>().HasOne(c => c.ID_Vehicle);
+            modelBuilder.Entity<Course>().HasOne(c => c.ID_Instructor);
+            modelBuilder.Entity<Course>().HasOne(c => c.ID_Category);
 
             // n:n
             modelBuilder.Entity<Course>()
-                .HasMany(s => s.Students)
-                .WithMany(s => s.Courses)
+                .HasMany(c => c.Students)
+                .WithMany(p => p.Courses)
                 .UsingEntity<Dictionary<string, object>>("STUDENT_COURSE",
                 sc => sc.HasOne<Student>().WithMany().HasForeignKey("ID_student"),
                 sc => sc.HasOne<Course>().WithMany().HasForeignKey("ID_course"),

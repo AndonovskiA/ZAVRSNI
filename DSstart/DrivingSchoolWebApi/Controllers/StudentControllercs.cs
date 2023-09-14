@@ -114,7 +114,8 @@ namespace DrivingSchoolWebApi.Controllers
                     studentBase.CONTACT_NUMBER = sDto.CONTACT_NUMBER;
                     studentBase.DATE_OF_ENROLLMENT = sDto.DATE_OF_ENROLLMENT;
 
-                    _context.Student.Update(studentBase);
+                    _context.Student.Update(studentBase);  
+                    _context.SaveChanges();
                     sDto.ID = studentBase.ID;
                     return StatusCode(StatusCodes.Status200OK, sDto);
 

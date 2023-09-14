@@ -6,14 +6,17 @@ namespace DrivingSchoolWebApi.Models
     {
 
 
+        [ForeignKey("Instructor")]
+        public  Instructor?  ID_Instructor { get; set; }
 
-        [ForeignKey("instructor")]
-        public  Instructor Instructor { get; set; }
-        [ForeignKey("vehicle")]
-        public  Vehicle Vehicle { get; set; }
 
-        [ForeignKey("category")]
-        public Category Category { get; set; } 
+        [ForeignKey("Vehicle")]
+        public  Vehicle? ID_Vehicle { get; set; }
+
+
+        [ForeignKey("Category")]
+        public Category? ID_Category { get; set; } 
+
 
         public  DateTime START_DATE { get; set; }
 
