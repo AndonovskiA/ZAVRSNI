@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.Data.SqlClient;
 
 namespace DrivingSchoolWebApi.Models
 {
@@ -7,15 +8,15 @@ namespace DrivingSchoolWebApi.Models
 
 
         [ForeignKey("Instructor")]
-        public  Instructor?  ID_Instructor { get; set; }
+        public  Instructor? ID_INSTRUCTOR { get; set; }
 
 
         [ForeignKey("Vehicle")]
-        public  Vehicle? ID_Vehicle { get; set; }
+        public  Vehicle? ID_VEHICLE { get; set; }
 
 
         [ForeignKey("Category")]
-        public Category? ID_Category { get; set; } 
+        public Category? ID_CATEGORY { get; set; }
 
 
         public  DateTime START_DATE { get; set; }

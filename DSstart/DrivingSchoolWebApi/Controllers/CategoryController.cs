@@ -2,6 +2,7 @@
 using DrivingSchoolWebApi.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Data.SqlClient;
 
 namespace DrivingSchoolWebApi.Controllers
 {

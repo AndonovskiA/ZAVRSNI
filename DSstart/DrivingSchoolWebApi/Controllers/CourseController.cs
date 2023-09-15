@@ -36,9 +36,9 @@ namespace DrivingSchoolWebApi.Controllers
             try
             {
                 var courses = _context.Course
-                    .Include(c => c.ID_Instructor)
-                    .Include(c =>c.ID_Vehicle)
-                    .Include(c => c.ID_Category)
+                    .Include(c => c.ID_INSTRUCTOR)
+                    .Include(c =>c.ID_VEHICLE)
+                    .Include(c => c.ID_CATEGORY)
                     .Include(c => c.Students)
                     .ToList();
 
@@ -54,9 +54,9 @@ namespace DrivingSchoolWebApi.Controllers
                     back.Add(new CourseDTO()
                     {
                         ID = c.ID,
-                        IDInstructor=c.ID_Instructor.ID,
-                        IDCategory=c.ID_Category.ID,
-                        IDVehicle=c.ID_Vehicle.ID,
+                        IDInstructor=c.ID_INSTRUCTOR.ID,
+                        IDCategory=c.ID_CATEGORY.ID,
+                        IDVehicle=c.ID_VEHICLE.ID,
                         START_DATE = c.START_DATE,
                         Number_of_students=c.Students.Count
 

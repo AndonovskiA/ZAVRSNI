@@ -26,9 +26,9 @@ namespace DrivingSchoolWebApi.Data
            ModelBuilder modelBuilder)
         {
             //  1:n
-            modelBuilder.Entity<Course>().HasOne(c => c.ID_Vehicle);
-            modelBuilder.Entity<Course>().HasOne(c => c.ID_Instructor);
-            modelBuilder.Entity<Course>().HasOne(c => c.ID_Category);
+            modelBuilder.Entity<Course>().HasOne(c => c.ID_VEHICLE);
+            modelBuilder.Entity<Course>().HasOne(c => c.ID_INSTRUCTOR);
+            modelBuilder.Entity<Course>().HasOne(c => c.ID_CATEGORY);
 
             // n:n
             modelBuilder.Entity<Course>()
