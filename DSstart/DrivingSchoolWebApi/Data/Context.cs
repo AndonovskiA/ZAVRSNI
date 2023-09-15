@@ -33,7 +33,7 @@ namespace DrivingSchoolWebApi.Data
             // n:n
             modelBuilder.Entity<Course>()
                 .HasMany(c => c.Students)
-                .WithMany(p => p.Courses)
+                .WithMany(s => s.Courses)
                 .UsingEntity<Dictionary<string, object>>("STUDENT_COURSE",
                 sc => sc.HasOne<Student>().WithMany().HasForeignKey("ID_student"),
                 sc => sc.HasOne<Course>().WithMany().HasForeignKey("ID_course"),

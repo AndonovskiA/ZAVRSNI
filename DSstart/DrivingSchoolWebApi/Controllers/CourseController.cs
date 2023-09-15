@@ -2,6 +2,9 @@
 using DrivingSchoolWebApi.Models.DTO;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using DrivingSchoolWebApi.Models;
+
+
 
 namespace DrivingSchoolWebApi.Controllers
 {
@@ -19,6 +22,7 @@ namespace DrivingSchoolWebApi.Controllers
             _logger= logger;
         }
 
+        
         [HttpGet]
         public IActionResult Get()
         {
@@ -69,12 +73,7 @@ namespace DrivingSchoolWebApi.Controllers
 
 
         }
-
-
-
-
-
-
+      
 
     }
 }
