@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using DrivingSchoolWebApi.Models;
 using System.Linq.Expressions;
+using System.Text.RegularExpressions;
 
 namespace DrivingSchoolWebApi.Controllers
 {
@@ -18,7 +19,7 @@ namespace DrivingSchoolWebApi.Controllers
         public CourseController(Context context, ILogger<CourseController> logger)
         {
             _context = context;
-            _logger= logger;
+            _logger = logger;
         }
 
         public DateTime? START_DATE { get; private set; }
@@ -37,7 +38,7 @@ namespace DrivingSchoolWebApi.Controllers
             {
                 var courses = _context.Course
                     .Include(c => c.Instructor)
-                    .Include(c =>c.Vehicle)
+                    .Include(c => c.Vehicle)
                     .Include(c => c.Category)
                     .Include(c => c.Students)
                     .ToList();
@@ -54,16 +55,16 @@ namespace DrivingSchoolWebApi.Controllers
                     back.Add(new CourseDTO()
                     {
                         ID = c.ID,
-                        IDInstructor=c.Instructor.ID,
-                        IDCategory=c.Category.ID,
-                        IDVehicle=c.Vehicle.ID,
+                        IDInstructor = c.Instructor.ID,
+                        IDCategory = c.Category.ID,
+                        IDVehicle = c.Vehicle.ID,
                         START_DATE = c.START_DATE,
-                        Number_of_students=c.Students.Count
+                        Number_of_students = c.Students.Count
 
                     });
-                });  
-                     return Ok(back);
-                }
+                });
+                return Ok(back);
+            }
             catch (Exception ex)
             {
                 return StatusCode(
@@ -92,19 +93,19 @@ namespace DrivingSchoolWebApi.Controllers
             {
                 return BadRequest(ModelState);
             }
-            if (courseDTO.IDCategory  <= 0) 
+            if (courseDTO.IDCategory <= 0)
             {
                 return BadRequest(ModelState);
             }
-            try 
+            try
             {
                 var instructor = _context.Instructor.Find(courseDTO.IDInstructor);
-                if (instructor == null) 
+                if (instructor == null)
                 {
                     return BadRequest(ModelState);
                 }
                 var vehicle = _context.Vehicle.Find(courseDTO.IDVehicle);
-                if(vehicle == null)
+                if (vehicle == null)
                 {
                     return BadRequest(ModelState);
                 }
@@ -119,23 +120,23 @@ namespace DrivingSchoolWebApi.Controllers
                 Course c = new()
                 {
                     START_DATE = courseDTO.START_DATE,
-                    Instructor= instructor,
-                    Vehicle= vehicle,
-                    Category= category
-                    
+                    Instructor = instructor,
+                    Vehicle = vehicle,
+                    Category = category
+
                 };
 
                 _context.Course.Add(c);
                 _context.SaveChanges();
 
                 courseDTO.ID = c.ID;
-              
+
 
                 return Ok(courseDTO);
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status503ServiceUnavailable,ex);
+                return StatusCode(StatusCodes.Status503ServiceUnavailable, ex);
             }
 
         }
@@ -160,48 +161,37 @@ namespace DrivingSchoolWebApi.Controllers
                 {
                     return BadRequest();
                 }
-                var instructor = _context.Instructor.Find(courseDTO.);
+                var instructor = _context.Instructor.Find(courseDTO.IDInstructor);
                 if (instructor == null)
                 {
                     return BadRequest(ModelState);
                 }
-                var vehicle = _context.Vehicle.Find(ID);
+                var vehicle = _context.Vehicle.Find(courseDTO.IDVehicle);
                 if (vehicle == null)
                 {
                     return BadRequest(ModelState);
                 }
 
-                var category = _context.Category.Find(ID);
+                var category = _context.Category.Find(courseDTO.IDCategory);
                 if (category == null)
                 {
                     return BadRequest(ModelState);
                 }
 
-              /*  var student = _context.Student.Find(ID);
-                if (student == null)
-                {
-                    return BadRequest(ModelState);
-                }
-              */
-                course.START_DATE = START_DATE;
+                /*  var student = _context.Student.Find(ID);
+                  if (student == null)
+                  {
+                      return BadRequest(ModelState);
+                  }
+                */
+                course.START_DATE = courseDTO.START_DATE;
 
-                course.Instructor= instructor;
+                course.Instructor = instructor;
                 course.Vehicle = vehicle;
                 course.Category = category;
 
-
-
-                _context.Course.Add(course);
+                _context.Course.Update(course);
                 _context.SaveChanges();
-
-                // public int Number_of_students { get; set; }
-                /*START_DATE,
-                    Instructor = instructor,
-                    Vehicle = vehicle,
-                    Category = category
-                     courseDTO.ID = ID;
-                */
-
 
 
                 return Ok(courseDTO);
@@ -215,19 +205,137 @@ namespace DrivingSchoolWebApi.Controllers
 
         }
 
+        [HttpDelete]
+        [Route("{ID:int}")]
+        [Produces("application/json")]
+        public IActionResult Delete(int ID)
+        {
+            if (ID <= 0)
+            {
+                return BadRequest();
+            }
+
+            var courseBase = _context.Course.Find(ID);
+            if (courseBase == null)
+            {
+                return BadRequest();
+            }
+            try
+            {
+                _context.Course.Remove(courseBase);
+                _context.SaveChanges();
+
+                return new JsonResult("{\"poruka\":\"deleted\"}");
+            }
+            catch (Exception ex)
+            {
+                return new JsonResult("{\"message\":\"Can not be deleted\"}");
+            }
+        }
+
+        [HttpGet]
+        [Route("{ID:int}/students")]
+        public IActionResult GetStudents(int ID)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            if (ID <= 0)
+            {
+                return BadRequest();
+            }
+            try
+            {
+                var course = _context.Course
+                    .Include(c => c.Students)
+                    .FirstOrDefault(c => c.ID == ID);
+
+                if (course == null)
+                {
+                    return BadRequest();
+                }
+
+                if (course.Students == null || course.Students.Count == 0)
+                {
+                    return new EmptyResult();
+                }
+
+                List<StudentDTO> Back = new();
+                course.Students.ForEach(s =>
+                {
+                    Back.Add(new StudentDTO()
+                    {
+                        ID = s.ID,
+                        FIRST_NAME = s.FIRST_NAME,
+                        LAST_NAME = s.LAST_NAME,
+                        ADDRESS = s.ADDRESS,
+                        OIB = s.OIB,
+                        CONTACT_NUMBER = s.CONTACT_NUMBER,
+                        DATE_OF_ENROLLMENT = s.DATE_OF_ENROLLMENT
+
+                    });
+                });
+
+                return Ok(Back);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(
+                        StatusCodes.Status503ServiceUnavailable,
+                        ex.Message);
+            }
+
+        }
+        [HttpPost]
+        [Route("{ID:int}/add/{studentID:int}")]
+        public IActionResult AddStudent(int ID, int studentID)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            if (ID <= 0 || studentID <= 0)
+            {
+                return BadRequest();
+            }
+
+            try
+            {
+                var course = _context.Course
+                   .Include(c => c.Students)
+                   .FirstOrDefault(c => c.ID == ID);
+                if (course == null)
+                {
+                    return BadRequest();
+                }
+                var student = _context.Student.Find(studentID);
+                if (student == null)
+                { 
+                    return BadRequest(); 
+                }
+
+                // napraviti kontrolu da li je taj polaznik već u toj grupi
+                // napravi doma
+                course.Students.Add(student);
+                _context.Course.Update(course);
+                _context.SaveChanges();
 
 
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(
+                       StatusCodes.Status503ServiceUnavailable,
+                       ex.Message);
+            }
 
 
-
-
-
-
-
-
-
-    }   
-
+        }
+    }
 }
     
 
