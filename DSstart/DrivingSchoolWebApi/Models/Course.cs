@@ -19,7 +19,7 @@ namespace DrivingSchoolWebApi.Models
         public Category? Category { get; set; }
 
 
-        public  DateTime START_DATE { get; set; }
+        public  DateTime? START_DATE { get; set; }
 
         public List<Student> Students { get; set; } = new();
 

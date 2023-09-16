@@ -92,49 +92,61 @@ namespace DrivingSchoolWebApi.Controllers
             if (courseDTO.IDVehicle <= 0)
             {
                 return BadRequest(ModelState);
-
-
-            if (courseDTO.IDCategory <= 0)
-                {
-                    return BadRequest(ModelState);
-                }
+            }
+            if (courseDTO.IDCategory  <= 0) 
+            {
+                return BadRequest(ModelState);
             }
             try 
             {
-                Course c = new();
+                var instructor = _context.Instructor.Find();
+                if (instructor == null) 
                 {
-                    START_DATE = courseDTO.START_DATE;
+                    return BadRequest(ModelState);
+                }
+                var vehicle = _context.Vehicle.Find();
+                if(vehicle == null)
+                {
+                    return BadRequest(ModelState);
+                }
+
+                var category = _context.Category.Find();
+                if (category == null)
+                {
+                    return BadRequest(ModelState);
+                }
+
+
+                Course c = new()
+                {
+                    START_DATE = courseDTO.START_DATE,
+                    Instructor= instructor,
+                    Vehicle= vehicle,
+                    Category= category
                     
                 };
+
+                _context.Course.Add(c);
+                _context.SaveChanges();
+
+                courseDTO.ID = c.ID;
+                
+
+                
+              
 
 
                 return Ok(courseDTO);
             }
             catch (Exception ex)
             {
-                return StatusCode(
-                  StatusCodes.Status503ServiceUnavailable,
-                  ex);
+                return StatusCode(StatusCodes.Status503ServiceUnavailable,ex);
             }
 
 
-
-
-
-
-
-
         }
+    }   
 
-
-
-
-
-
-
-
-
-
-
-    }
 }
+    
+
