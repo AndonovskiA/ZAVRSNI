@@ -153,16 +153,14 @@ namespace DrivingSchoolWebApi.Controllers
             {
                 return BadRequest();
             }
-
             try
-
             {
                 var course = _context.Course.Find(ID);
                 if (course == null)
                 {
                     return BadRequest();
                 }
-                var instructor = _context.Instructor.Find(ID);
+                var instructor = _context.Instructor.Find(courseDTO.);
                 if (instructor == null)
                 {
                     return BadRequest(ModelState);
@@ -179,16 +177,31 @@ namespace DrivingSchoolWebApi.Controllers
                     return BadRequest(ModelState);
                 }
 
-                var student= _context.Student.Find(ID);
+              /*  var student = _context.Student.Find(ID);
                 if (student == null)
                 {
                     return BadRequest(ModelState);
                 }
+              */
+                course.START_DATE = START_DATE;
 
+                course.Instructor= instructor;
+                course.Vehicle = vehicle;
+                course.Category = category;
+
+
+
+                _context.Course.Add(course);
+                _context.SaveChanges();
 
                 // public int Number_of_students { get; set; }
-
+                /*START_DATE,
+                    Instructor = instructor,
+                    Vehicle = vehicle,
+                    Category = category
                      courseDTO.ID = ID;
+                */
+
 
 
                 return Ok(courseDTO);
