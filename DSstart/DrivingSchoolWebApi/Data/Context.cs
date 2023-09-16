@@ -1,6 +1,7 @@
 ﻿using DrivingSchoolWebApi.Models;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Data.SqlClient;
 
 namespace DrivingSchoolWebApi.Data
 {
@@ -26,9 +27,9 @@ namespace DrivingSchoolWebApi.Data
            ModelBuilder modelBuilder)
         {
             //  1:n
-            modelBuilder.Entity<Course>().HasOne(c => c.ID_VEHICLE);
-            modelBuilder.Entity<Course>().HasOne(c => c.ID_INSTRUCTOR);
-            modelBuilder.Entity<Course>().HasOne(c => c.ID_CATEGORY);
+            modelBuilder.Entity<Course>().HasOne(c => c.Vehicle);
+            modelBuilder.Entity<Course>().HasOne(c => c.Instructor);
+            modelBuilder.Entity<Course>().HasOne(c => c.Category);
 
             // n:n
             modelBuilder.Entity<Course>()

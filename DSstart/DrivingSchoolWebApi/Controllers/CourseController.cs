@@ -22,7 +22,8 @@ namespace DrivingSchoolWebApi.Controllers
             _logger= logger;
         }
 
-        
+        public DateTime? START_DATE { get; private set; }
+
         [HttpGet]
         public IActionResult Get()
         {
@@ -36,9 +37,9 @@ namespace DrivingSchoolWebApi.Controllers
             try
             {
                 var courses = _context.Course
-                    .Include(c => c.ID_INSTRUCTOR)
-                    .Include(c =>c.ID_VEHICLE)
-                    .Include(c => c.ID_CATEGORY)
+                    .Include(c => c.Instructor)
+                    .Include(c =>c.Vehicle)
+                    .Include(c => c.Category)
                     .Include(c => c.Students)
                     .ToList();
 
@@ -54,9 +55,9 @@ namespace DrivingSchoolWebApi.Controllers
                     back.Add(new CourseDTO()
                     {
                         ID = c.ID,
-                        IDInstructor=c.ID_INSTRUCTOR.ID,
-                        IDCategory=c.ID_CATEGORY.ID,
-                        IDVehicle=c.ID_VEHICLE.ID,
+                        IDInstructor=c.Instructor.ID,
+                        IDCategory=c.Category.ID,
+                        IDVehicle=c.Vehicle.ID,
                         START_DATE = c.START_DATE,
                         Number_of_students=c.Students.Count
 
@@ -73,7 +74,67 @@ namespace DrivingSchoolWebApi.Controllers
 
 
         }
-      
+
+        [HttpPost]
+
+        public IActionResult Post(CourseDTO courseDTO)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if (courseDTO.IDInstructor <= 0)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if (courseDTO.IDVehicle <= 0)
+            {
+                return BadRequest(ModelState);
+
+
+            if (courseDTO.IDCategory <= 0)
+                {
+                    return BadRequest(ModelState);
+                }
+            }
+            try 
+            {
+                Course c = new();
+                {
+                    START_DATE = courseDTO.START_DATE;
+                    
+                };
+
+
+                return Ok(courseDTO);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(
+                  StatusCodes.Status503ServiceUnavailable,
+                  ex);
+            }
+
+
+
+
+
+
+
+
+        }
+
+
+
+
+
+
+
+
+
+
 
     }
 }

@@ -15,9 +15,11 @@ namespace DrivingSchoolWebApi.Controllers
         public class StudentController : ControllerBase
         {
             private readonly Context _context;
-            public StudentController(Context context) 
+        private readonly ILogger<StudentController> _logger;
+            public StudentController(Context context, ILogger<StudentController> logger) 
             {
                 _context = context;
+                _logger = logger;
             }
 
 
@@ -61,32 +63,42 @@ namespace DrivingSchoolWebApi.Controllers
             [HttpPost]
             public IActionResult Post(StudentDTO dto)
             {
+
+            _logger.LogInformation("Stigao", dto.FIRST_NAME);
+
                 if (!ModelState.IsValid)
                 {
                     return BadRequest(ModelState);
                 }
 
-                try
+            _logger.LogInformation("Stigao", dto.LAST_NAME);
+
+            try
                 {
                     Student s = new Student()
                     {
                         FIRST_NAME = dto.FIRST_NAME,
                         LAST_NAME = dto.LAST_NAME,
                         ADDRESS = dto.ADDRESS,
+                        OIB= dto.OIB,
                         CONTACT_NUMBER = dto.CONTACT_NUMBER,
                         DATE_OF_ENROLLMENT = dto.DATE_OF_ENROLLMENT,
                     };
 
-                    _context.Student.Add(s);
-                    _context.SaveChanges();
-                    dto.ID = s.ID;
+                _logger.LogInformation("Stigao", s.DATE_OF_ENROLLMENT);
+
+                _context.Student.Add(s);
+                _logger.LogInformation("Stigao", s.OIB);
+                _context.SaveChanges();
+                _logger.LogInformation("Stigao", s.ID);
+                dto.ID = s.ID;
                     return Ok(dto);
 
                 }
                 catch (Exception ex)
                 {
                     return StatusCode(
-                        StatusCodes.Status503ServiceUnavailable, ex.Message);
+                        StatusCodes.Status503ServiceUnavailable, ex.InnerException);
                 }
             }
 
