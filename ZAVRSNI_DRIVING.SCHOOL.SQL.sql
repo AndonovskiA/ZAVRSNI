@@ -1,13 +1,14 @@
-
-use master;
-go
-
-drop database if exists DRIVING_SCHOOL;
-
-go
-create database DRIVING_SCHOOL;
-
-use DRIVING_SCHOOL;
+SELECT name, collation_name FROM sys.databases;
+GO
+ALTER DATABASE db_a9fb68_anjaandonovski SET SINGLE_USER WITH
+ROLLBACK IMMEDIATE;
+GO
+ALTER DATABASE db_a9fb68_anjaandonovski COLLATE Croatian_CI_AS;
+GO
+ALTER DATABASE db_a9fb68_anjaandonovski SET MULTI_USER;
+GO
+SELECT name, collation_name FROM sys.databases;
+GO
 
 create table INSTRUCTOR(
 	ID int not null primary key identity (1,1),
@@ -113,3 +114,4 @@ insert into COURSE(ID_INSTRUCTOR,ID_VEHICLE,ID_CATEGORY,START_DATE)
 		('1','1','1','2023-02-05 17:00:00'),
 		('2','2','2','2023-01-12 17:00:00'),
 		('3','3','3','2023-01-01 17:00:00');
+

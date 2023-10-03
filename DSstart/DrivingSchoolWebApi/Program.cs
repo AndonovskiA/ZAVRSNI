@@ -33,7 +33,7 @@ builder.Services.AddDbContext<Context>(o =>
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+ /*if (app.Environment.IsDevelopment())
 {
     app.UseSwagger(options =>
     {
@@ -47,12 +47,15 @@ if (app.Environment.IsDevelopment())
     });
     
 
-}
+}*/
 
 app.UseHttpsRedirection();
 
-
-
 app.MapControllers();
+
+app.UseDefaultFiles();
+app.UseDeveloperExceptionPage();
+app.MapFallbackToFile("index.html");
+
 
 app.Run();
