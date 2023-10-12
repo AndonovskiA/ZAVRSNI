@@ -22,7 +22,10 @@ namespace DrivingSchoolWebApi.Controllers
                 _logger = logger;
             }
 
-
+            /// <summary>
+            /// dohvaca polaznike
+            /// </summary>
+            /// <returns></returns>
             [HttpGet]
             public IActionResult Get()
             {
@@ -58,7 +61,11 @@ namespace DrivingSchoolWebApi.Controllers
                 return Ok(back);
 
             }
-
+        /// <summary>
+        /// dohvaca polaznike po sifri
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("{ID:int}")]
         public IActionResult GetByID(int ID)
@@ -90,7 +97,11 @@ namespace DrivingSchoolWebApi.Controllers
 
 
 
-
+        /// <summary>
+        /// dodavanje novih polaznika
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns></returns>
         [HttpPost]
             public IActionResult Post(StudentDTO dto)
             {
@@ -132,7 +143,12 @@ namespace DrivingSchoolWebApi.Controllers
                         StatusCodes.Status503ServiceUnavailable, ex.InnerException);
                 }
             }
-
+            /// <summary>
+            /// izmjena polaznika
+            /// </summary>
+            /// <param name="ID"></param>
+            /// <param name="sDto"></param>
+            /// <returns></returns>
             [HttpPut]
             [Route("{ID:int}")]
             public IActionResult Put(int ID,StudentDTO sDto)
@@ -171,7 +187,11 @@ namespace DrivingSchoolWebApi.Controllers
 
 
             }
-
+            /// <summary>
+            /// brisanje polaznika
+            /// </summary>
+            /// <param name="ID"></param>
+            /// <returns></returns>
             [HttpDelete]
             [Route("{ID:int}")]
             [Produces("application/json")]

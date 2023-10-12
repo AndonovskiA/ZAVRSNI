@@ -18,7 +18,10 @@ namespace DrivingSchoolWebApi.Controllers
             _context = context;
         }
 
-
+        /// <summary>
+        /// dohvaca vozila
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult Get()
         {
@@ -46,7 +49,11 @@ namespace DrivingSchoolWebApi.Controllers
 
             }
         }
-
+        /// <summary>
+        /// dohvaca vozila
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("{sifra:ID}")]
         public IActionResult GetByID(int ID)
@@ -78,7 +85,11 @@ namespace DrivingSchoolWebApi.Controllers
 
 
 
-
+        /// <summary>
+        /// neda nista
+        /// </summary>
+        /// <param name="vehicle"></param>
+        /// <returns></returns>
 
         [HttpPost]
         public IActionResult Post(Vehicle vehicle)
@@ -103,7 +114,12 @@ namespace DrivingSchoolWebApi.Controllers
 
         }
 
-
+        /// <summary>
+        /// dodavanje novih vozila
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <param name="vehicle"></param>
+        /// <returns></returns>
         [HttpPut]
         [Route("{ID:int}")]
         public IActionResult Put(int ID, Vehicle vehicle)
@@ -143,7 +159,11 @@ namespace DrivingSchoolWebApi.Controllers
                 // nije dobro vraćati cijeli ex ali za dev je OK
             }
         }
-
+        /// <summary>
+        /// brisanje vozila
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <returns></returns>
         [HttpDelete]
         [Route("{ID:int}")]
         [Produces("application/json")]

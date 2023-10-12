@@ -24,6 +24,10 @@ namespace DrivingSchoolWebApi.Controllers
 
         public DateTime? START_DATE { get; private set; }
 
+        /// <summary>
+        /// dohvaca sve tecajeve
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult Get()
         {
@@ -75,6 +79,11 @@ namespace DrivingSchoolWebApi.Controllers
 
         }
 
+        /// <summary>
+        /// dodavanje novih tecajeva
+        /// </summary>
+        /// <param name="courseDTO"></param>
+        /// <returns></returns>
         [HttpPost]
 
         public IActionResult Post(CourseDTO courseDTO)
@@ -141,6 +150,13 @@ namespace DrivingSchoolWebApi.Controllers
 
         }
 
+
+        /// <summary>
+        /// promjena tecajeva
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <param name="courseDTO"></param>
+        /// <returns></returns>
         [HttpPut]
         [Route("{ID:int}")]
 
@@ -204,7 +220,11 @@ namespace DrivingSchoolWebApi.Controllers
             }
 
         }
-
+        /// <summary>
+        /// brisanje tecajeva
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <returns></returns>
         [HttpDelete]
         [Route("{ID:int}")]
         [Produces("application/json")]

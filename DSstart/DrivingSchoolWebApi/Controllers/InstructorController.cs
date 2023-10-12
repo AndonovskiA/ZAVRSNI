@@ -18,7 +18,10 @@ namespace DrivingSchoolWebApi.Controllers
         {
             _context = context;
         }
-
+        /// <summary>
+        /// dohvaca instruktore
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult Get()
         {
@@ -42,7 +45,11 @@ namespace DrivingSchoolWebApi.Controllers
             }
 
         }
-
+        /// <summary>
+        /// dohvaca instruktore po sifri
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("{sifra:ID}")]
         public IActionResult GetByID(int ID)
@@ -74,7 +81,11 @@ namespace DrivingSchoolWebApi.Controllers
 
 
 
-
+        /// <summary>
+        /// dodavanje instruktora
+        /// </summary>
+        /// <param name="instructor"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult Post(Instructor instructor)
         {
@@ -99,7 +110,12 @@ namespace DrivingSchoolWebApi.Controllers
 
         }
 
-
+        /// <summary>
+        /// promjena instruktora
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <param name="instructor"></param>
+        /// <returns></returns>
         [HttpPut]
         [Route("{ID:int}")]
 
@@ -141,7 +157,11 @@ namespace DrivingSchoolWebApi.Controllers
             }
 
         }
-
+        /// <summary>
+        /// brisanje instruktora
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <returns></returns>
         [HttpDelete]
         [Route("{ID:int}")]
         [Produces("application/json")]

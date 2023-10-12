@@ -17,7 +17,10 @@ namespace DrivingSchoolWebApi.Controllers
         {
             _context = context;
         }
-
+        /// <summary>
+        /// dohvaca sve kategorije
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult Get()
         {
@@ -40,7 +43,11 @@ namespace DrivingSchoolWebApi.Controllers
                                         ex.Message);
             }
         }
-
+        /// <summary>
+        /// dohvaca kategorije po sifri
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("{ID:int}")]
         public IActionResult GetByID(int ID)
@@ -75,7 +82,11 @@ namespace DrivingSchoolWebApi.Controllers
 
 
 
-
+        /// <summary>
+        /// dodavanje kategorija
+        /// </summary>
+        /// <param name="category"></param>
+        /// <returns></returns>
 
         [HttpPost]
         public IActionResult Post(Category category)
@@ -99,7 +110,12 @@ namespace DrivingSchoolWebApi.Controllers
             }
         }
 
-
+        /// <summary>
+        /// izmjena kategorija
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <param name="category"></param>
+        /// <returns></returns>
         [HttpPut]
         [Route("{ID:int}")]
         public IActionResult Put(int ID, Category category)
@@ -141,7 +157,11 @@ namespace DrivingSchoolWebApi.Controllers
         }
 
 
-
+        /// <summary>
+        /// brisanje kategorija
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <returns></returns>
 
         [HttpDelete]
         [Route("{ID:int}")]
