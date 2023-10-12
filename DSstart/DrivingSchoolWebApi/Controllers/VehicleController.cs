@@ -47,6 +47,34 @@ namespace DrivingSchoolWebApi.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("{sifra:ID}")]
+        public IActionResult GetByID(int ID)
+        {
+
+            if (ID <= 0)
+            {
+                return BadRequest(ModelState);
+            }
+
+            try
+            {
+                var v = _context.Vehicle.Find(ID);
+
+                if (v == null)
+                {
+                    return StatusCode(StatusCodes.Status204NoContent, v);
+                }
+
+                return new JsonResult(v);
+
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status503ServiceUnavailable, ex.Message);
+            }
+
+        }
 
 
 

@@ -61,7 +61,7 @@ namespace DrivingSchoolWebApi.Controllers
 
         [HttpGet]
         [Route("{ID:int}")]
-        public IActionResult GetBySifra(int ID)
+        public IActionResult GetByID(int ID)
         {
 
             if (ID <= 0)

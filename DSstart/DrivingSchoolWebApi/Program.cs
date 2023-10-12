@@ -18,7 +18,12 @@ builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddSwaggerGen();
 
-
+builder.Services.AddCors(opcije =>
+{
+    opcije.AddPolicy("CorsPolicy",
+        builder =>
+        builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+});
 
 
 builder.Services.AddDbContext<Context>(o =>
@@ -47,12 +52,12 @@ var app = builder.Build();
     });
     
 
-//}s
+//}
 
 app.UseHttpsRedirection();
 
 app.MapControllers();
-
+app.UseCors("CorsPolicy");
 app.UseDefaultFiles();
 app.UseDeveloperExceptionPage();
 app.MapFallbackToFile("index.html");
