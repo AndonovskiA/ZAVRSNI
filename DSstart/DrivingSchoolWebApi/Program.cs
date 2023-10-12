@@ -33,8 +33,8 @@ builder.Services.AddDbContext<Context>(o =>
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
- /*if (app.Environment.IsDevelopment())
-{
+ //if (app.Environment.IsDevelopment())
+//{
     app.UseSwagger(options =>
     {
         options.SerializeAsV2 = true;
@@ -47,7 +47,7 @@ var app = builder.Build();
     });
     
 
-}*/
+//}s
 
 app.UseHttpsRedirection();
 
@@ -57,5 +57,5 @@ app.UseDefaultFiles();
 app.UseDeveloperExceptionPage();
 app.MapFallbackToFile("index.html");
 
-
+app.UseStaticFiles();
 app.Run();

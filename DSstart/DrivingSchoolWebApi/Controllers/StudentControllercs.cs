@@ -59,8 +59,44 @@ namespace DrivingSchoolWebApi.Controllers
 
             }
 
+        [HttpGet]
+        [Route("{ID:int}")]
+        public IActionResult GetBySifra(int ID)
+        {
 
-            [HttpPost]
+            if (ID <= 0)
+            {
+                return BadRequest(ModelState);
+            }
+
+            try
+            {
+                var s = _context.Student.Find(ID);
+
+                if (s == null)
+                {
+                    return StatusCode(StatusCodes.Status204NoContent, s);
+                }
+
+                return new JsonResult(s);
+
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status503ServiceUnavailable, ex.Message);
+            }
+
+        }
+
+
+
+
+
+
+
+
+
+        [HttpPost]
             public IActionResult Post(StudentDTO dto)
             {
 
