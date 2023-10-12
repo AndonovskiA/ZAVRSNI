@@ -48,3 +48,4 @@ C:\Users\Anja\Documents\ZAVRSNI\DSstart\DrivingSchoolWebApi\obj\Release\net7.0\P
 C:\Users\Anja\Documents\ZAVRSNI\DSstart\DrivingSchoolWebApi\obj\Release\net7.0\PubTmp\Out\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
 C:\Users\Anja\Documents\ZAVRSNI\DSstart\DrivingSchoolWebApi\obj\Release\net7.0\PubTmp\Out\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\Anja\Documents\ZAVRSNI\DSstart\DrivingSchoolWebApi\obj\Release\net7.0\PubTmp\Out\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
+C:\Users\Anja\Documents\ZAVRSNI\DSstart\DrivingSchoolWebApi\obj\Release\net7.0\PubTmp\Out\DrivingSchoolWebApi.xml

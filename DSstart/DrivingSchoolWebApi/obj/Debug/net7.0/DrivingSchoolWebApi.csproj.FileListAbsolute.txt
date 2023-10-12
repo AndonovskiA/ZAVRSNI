@@ -210,3 +210,6 @@ C:\Users\Polaznik\Documents\GitHub\ZAVRSNI\DSstart\DrivingSchoolWebApi\obj\Debug
 C:\Users\Polaznik\Documents\GitHub\ZAVRSNI\DSstart\DrivingSchoolWebApi\obj\Debug\net7.0\DrivingSchoolWebApi.pdb
 C:\Users\Polaznik\Documents\GitHub\ZAVRSNI\DSstart\DrivingSchoolWebApi\obj\Debug\net7.0\DrivingSchoolWebApi.genruntimeconfig.cache
 C:\Users\Polaznik\Documents\GitHub\ZAVRSNI\DSstart\DrivingSchoolWebApi\obj\Debug\net7.0\ref\DrivingSchoolWebApi.dll
+C:\Users\Anja\Documents\ZAVRSNI\DSstart\DrivingSchoolWebApi\bin\Debug\net7.0\DrivingSchoolWebApi.staticwebassets.runtime.json
+C:\Users\Anja\Documents\ZAVRSNI\DSstart\DrivingSchoolWebApi\bin\Debug\net7.0\DrivingSchoolWebApi.xml
+C:\Users\Anja\Documents\ZAVRSNI\DSstart\DrivingSchoolWebApi\obj\Debug\net7.0\DrivingSchoolWebApi.xml

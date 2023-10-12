@@ -1,11 +1,19 @@
 {
   "Version": 1,
-  "Hash": "LlmsP0wd9c22h5TOamAi0p7Ws6bWQqg8CYDbM+NjaeU=",
+  "Hash": "fPjIwsDErdr+lMEVVmKg9FGVSo5YWYYoTxIYRblQ+BU=",
   "Source": "DrivingSchoolWebApi",
   "BasePath": "_content/DrivingSchoolWebApi",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "DrivingSchoolWebApi\\wwwroot",
+      "Source": "DrivingSchoolWebApi",
+      "ContentRoot": "C:\\Users\\Anja\\Documents\\ZAVRSNI\\DSstart\\DrivingSchoolWebApi\\wwwroot\\",
+      "BasePath": "_content/DrivingSchoolWebApi",
+      "Pattern": "**"
+    }
+  ],
   "Assets": []
 }

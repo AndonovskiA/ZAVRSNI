@@ -1,0 +1,93 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\Anja\\Documents\\ZAVRSNI\\DSstart\\DrivingSchoolWebApi\\wwwroot\\asset-manifest.json",
+      "PackagePath": "staticwebassets\\asset-manifest.json"
+    },
+    {
+      "Id": "C:\\Users\\Anja\\Documents\\ZAVRSNI\\DSstart\\DrivingSchoolWebApi\\wwwroot\\favicon.ico",
+      "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "C:\\Users\\Anja\\Documents\\ZAVRSNI\\DSstart\\DrivingSchoolWebApi\\wwwroot\\index.html",
+      "PackagePath": "staticwebassets\\index.html"
+    },
+    {
+      "Id": "C:\\Users\\Anja\\Documents\\ZAVRSNI\\DSstart\\DrivingSchoolWebApi\\wwwroot\\logo192.png",
+      "PackagePath": "staticwebassets\\logo192.png"
+    },
+    {
+      "Id": "C:\\Users\\Anja\\Documents\\ZAVRSNI\\DSstart\\DrivingSchoolWebApi\\wwwroot\\logo512.png",
+      "PackagePath": "staticwebassets\\logo512.png"
+    },
+    {
+      "Id": "C:\\Users\\Anja\\Documents\\ZAVRSNI\\DSstart\\DrivingSchoolWebApi\\wwwroot\\manifest.json",
+      "PackagePath": "staticwebassets\\manifest.json"
+    },
+    {
+      "Id": "C:\\Users\\Anja\\Documents\\ZAVRSNI\\DSstart\\DrivingSchoolWebApi\\wwwroot\\robots.txt",
+      "PackagePath": "staticwebassets\\robots.txt"
+    },
+    {
+      "Id": "C:\\Users\\Anja\\Documents\\ZAVRSNI\\DSstart\\DrivingSchoolWebApi\\wwwroot\\service-worker.js",
+      "PackagePath": "staticwebassets\\service-worker.js"
+    },
+    {
+      "Id": "C:\\Users\\Anja\\Documents\\ZAVRSNI\\DSstart\\DrivingSchoolWebApi\\wwwroot\\service-worker.js.LICENSE.txt",
+      "PackagePath": "staticwebassets\\service-worker.js.LICENSE.txt"
+    },
+    {
+      "Id": "C:\\Users\\Anja\\Documents\\ZAVRSNI\\DSstart\\DrivingSchoolWebApi\\wwwroot\\service-worker.js.map",
+      "PackagePath": "staticwebassets\\service-worker.js.map"
+    },
+    {
+      "Id": "C:\\Users\\Anja\\Documents\\ZAVRSNI\\DSstart\\DrivingSchoolWebApi\\wwwroot\\static\\css\\main.4dd8dc0a.css",
+      "PackagePath": "staticwebassets\\static\\css\\main.4dd8dc0a.css"
+    },
+    {
+      "Id": "C:\\Users\\Anja\\Documents\\ZAVRSNI\\DSstart\\DrivingSchoolWebApi\\wwwroot\\static\\css\\main.4dd8dc0a.css.map",
+      "PackagePath": "staticwebassets\\static\\css\\main.4dd8dc0a.css.map"
+    },
+    {
+      "Id": "C:\\Users\\Anja\\Documents\\ZAVRSNI\\DSstart\\DrivingSchoolWebApi\\wwwroot\\static\\js\\787.2d0ebaa6.chunk.js",
+      "PackagePath": "staticwebassets\\static\\js\\787.2d0ebaa6.chunk.js"
+    },
+    {
+      "Id": "C:\\Users\\Anja\\Documents\\ZAVRSNI\\DSstart\\DrivingSchoolWebApi\\wwwroot\\static\\js\\787.2d0ebaa6.chunk.js.map",
+      "PackagePath": "staticwebassets\\static\\js\\787.2d0ebaa6.chunk.js.map"
+    },
+    {
+      "Id": "C:\\Users\\Anja\\Documents\\ZAVRSNI\\DSstart\\DrivingSchoolWebApi\\wwwroot\\static\\js\\main.93d5db7a.js",
+      "PackagePath": "staticwebassets\\static\\js\\main.93d5db7a.js"
+    },
+    {
+      "Id": "C:\\Users\\Anja\\Documents\\ZAVRSNI\\DSstart\\DrivingSchoolWebApi\\wwwroot\\static\\js\\main.93d5db7a.js.LICENSE.txt",
+      "PackagePath": "staticwebassets\\static\\js\\main.93d5db7a.js.LICENSE.txt"
+    },
+    {
+      "Id": "C:\\Users\\Anja\\Documents\\ZAVRSNI\\DSstart\\DrivingSchoolWebApi\\wwwroot\\static\\js\\main.93d5db7a.js.map",
+      "PackagePath": "staticwebassets\\static\\js\\main.93d5db7a.js.map"
+    },
+    {
+      "Id": "C:\\Users\\Anja\\Documents\\ZAVRSNI\\DSstart\\DrivingSchoolWebApi\\wwwroot\\static\\media\\logo.d5d8ce4611dbfa462b4205a01fc08ae9.svg",
+      "PackagePath": "staticwebassets\\static\\media\\logo.d5d8ce4611dbfa462b4205a01fc08ae9.svg"
+    },
+    {
+      "Id": "obj\\Release\\net7.0\\staticwebassets\\msbuild.DrivingSchoolWebApi.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Release\\net7.0\\staticwebassets\\msbuild.build.DrivingSchoolWebApi.props",
+      "PackagePath": "build\\DrivingSchoolWebApi.props"
+    },
+    {
+      "Id": "obj\\Release\\net7.0\\staticwebassets\\msbuild.buildMultiTargeting.DrivingSchoolWebApi.props",
+      "PackagePath": "buildMultiTargeting\\DrivingSchoolWebApi.props"
+    },
+    {
+      "Id": "obj\\Release\\net7.0\\staticwebassets\\msbuild.buildTransitive.DrivingSchoolWebApi.props",
+      "PackagePath": "buildTransitive\\DrivingSchoolWebApi.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
