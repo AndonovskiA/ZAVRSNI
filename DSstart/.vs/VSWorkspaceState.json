@@ -1,14 +1,6 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\DrivingSchoolWebApi",
-    "\\DrivingSchoolWebApi\\Controllers",
-    "\\DrivingSchoolWebApi\\Data",
-    "\\DrivingSchoolWebApi\\Models",
-    "\\DrivingSchoolWebApi\\Models\\DTO",
-    "\\DrivingSchoolWebApi\\obj",
-    "\\DrivingSchoolWebApi\\Properties"
+    ""
   ],
-  "SelectedNode": "\\DrivingSchoolWebApi\\Controllers\\CourseController.cs",
   "PreviewInSolutionExplorer": false
 }

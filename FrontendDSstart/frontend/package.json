@@ -25,7 +25,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && rmdir ..\\..\\Users\\Anja\\Documents\\ZAVRSNI\\DSstart\\DrivingSchoolWebApi\\wwwroot /s /q && move /y build ../../Users/Anja/Documents/ZAVRSNI/DSstart/DrivingSchoolWebApi/wwwroot",
+    "build": "react-scripts build && rmdir ..\\..\\ZAVRSNI\\DSstart\\wwwroot /s /q && move /y build ../../ZAVRSNI/DSstart/wwwroot",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
