@@ -50,7 +50,7 @@ export default class changeInstructor extends Component {
     let niz = href.split('/'); 
     const answer = await instructorDataService.put(niz[niz.length-1],student);
     if(answer.ok){
-      window.location.href='/instrctors';
+      window.location.href='/instructors';
     }else{
       // pokaži grešku
       console.log(answer);
@@ -114,7 +114,7 @@ export default class changeInstructor extends Component {
 
               <Form.Group className="mb-3" controlId="contact number">
                 <Form.Label>Contact_Number</Form.Label>
-                <Form.Control type="text" name="cpntact number" placeholder="1234567890"/>
+                <Form.Control type="text" name="contact number" placeholder="1234567890"/>
               </Form.Group>
         
          

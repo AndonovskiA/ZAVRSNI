@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import studentDataService from "../../services/student.service";
+import studentDataService from "../../services/Student.service";
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -10,13 +10,13 @@ import { Link } from "react-router-dom";
 
 
 
-export default class changePolaznik extends Component {
+export default class changestudent extends Component {
 
   constructor(props) {
     super(props);
 
     this.student = this.getStudent();
-    this.changeStudent = this.changePolaznik.bind(this);
+    this.changeStudent = this.changeStudent.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     
     
@@ -28,7 +28,7 @@ export default class changePolaznik extends Component {
   }
 
 
-  async getPolaznik() {
+  async getStudent() {
     // ovo mora bolje
     let href = window.location.href;
     let niz = href.split('/'); 
@@ -44,7 +44,7 @@ export default class changePolaznik extends Component {
       });
   }
 
-  async changePolaznik(student) {
+  async changeStudent(student) {
     // ovo mora bolje
     let href = window.location.href;
     let niz = href.split('/'); 
@@ -71,7 +71,7 @@ export default class changePolaznik extends Component {
     //console.log(podaci.get('verificiran'));
     // You can pass formData as a service body directly:
 
-    this.changePolaznik({
+    this.changeStudent({
       First_Name: datainfo.get('First name'),
       Last_Name: datainfo.get('Last name'),
       Address: datainfo.get('Address'),
@@ -115,7 +115,7 @@ export default class changePolaznik extends Component {
 
               <Form.Group className="mb-3" controlId="contact number">
                 <Form.Label>Contact_Number</Form.Label>
-                <Form.Control type="text" name="cpntact number" placeholder="99999999999"required />
+                <Form.Control type="text" name="contact number" placeholder="99999999999"required />
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="date of enrollment">

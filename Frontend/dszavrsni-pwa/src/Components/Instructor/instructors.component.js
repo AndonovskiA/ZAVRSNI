@@ -56,7 +56,7 @@ export default class Instructors extends Component {
         return (
     
         <Container>
-          <a href="/students/add" className="btn btn-success gumb">Add new instructor</a>
+          <a href="/instructors/add" className="btn btn-success gumb">Add new instructor</a>
         <Row>
           { instructors && instructors.map((i) => (
                

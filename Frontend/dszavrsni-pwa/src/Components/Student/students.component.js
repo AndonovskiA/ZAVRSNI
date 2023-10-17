@@ -17,7 +17,7 @@ export default class Students extends Component {
   
       this.state = {
         students: [],
-        prikaziModal: false
+        showModal: false
       };
     }
 

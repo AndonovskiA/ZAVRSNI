@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import categoryDataService from "../../services/category.service";
+import categoryDataService from "../../services/Category.service";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -25,9 +25,9 @@ export default class Categories extends Component {
     closeModal = () => this.setState({ showModal: false });
     
     componentDidMount() {
-        this.getStudents();
+        this.getCategories();
       }
-      getStudents() {
+      getCategories() {
         categoryDataService.getAll()
           .then(response => {
             this.setState({
@@ -64,16 +64,16 @@ export default class Categories extends Component {
     
                   <Card style={{ width: '18rem' }}>
                     <Card.Body>
-                      <Card.Title>{s.First_Name} {s.Last_Name}</Card.Title>
+                      <Card.Title>{c.NAME} {c.PRICE}</Card.Title>
                       <Card.Text>
-                        {s.Address} {s.OIB} {s.Contact_Number} {s.Date_of_enrollment}
+                        {c.NUMBER_OF_TR_LECTURES} {VBArray.NUMBER_OF_DR_LECTURES}
                       </Card.Text>
                       <Row>
                           <Col>
-                          <Link className="btn btn-primary gumb" to={`/students/${s.ID}`}><FaEdit /></Link>
+                          <Link className="btn btn-primary gumb" to={`/categories/${s.ID}`}><FaEdit /></Link>
                           </Col>
                           <Col>
-                          <Button variant="danger" className="gumb"  onClick={() => this.deleteStudent(s.ID)}><FaTrash /></Button>
+                          <Button variant="danger" className="gumb"  onClick={() => this.deleteCategory(s.ID)}><FaTrash /></Button>
                           </Col>
                         </Row>
                     </Card.Body>

@@ -15,9 +15,9 @@ export default class AddCategory extends Component {
       this.handleSubmit = this.handleSubmit.bind(this);
     }
     async AddCategory(course) {
-      const answer = await studentDataService.post(course);
+      const answer = await categoryDataService.post(course);
       if(answer.ok){
-        // routing na smjerovi
+        // routing na tečaj
         window.location.href='/categories';
       }else{
         // pokaži grešku

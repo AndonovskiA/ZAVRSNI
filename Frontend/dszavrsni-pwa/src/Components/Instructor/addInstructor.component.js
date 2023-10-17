@@ -17,7 +17,7 @@ export default class AddInstructor extends Component {
     async AddInstructor(course) {
       const answer = await instructorDataService.post(course);
       if(answer.ok){
-        // routing na smjerovi
+        // routing na tecaj
         window.location.href='/instructors';
       }else{
         // pokaži grešku
@@ -32,7 +32,7 @@ export default class AddInstructor extends Component {
       const datainfo = new FormData(e.target);
   
       this.AddInstructor({
-        First_Name: datainfo.get('First name'),
+      First_Name: datainfo.get('First name'),
       Last_Name: datainfo.get('Last name'),
       Driver_License_Number: datainfo.get('Driver licence number'),
       EMAIL:datainfo.get("e-mail"),

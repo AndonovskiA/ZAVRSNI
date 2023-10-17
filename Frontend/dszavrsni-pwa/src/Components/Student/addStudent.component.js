@@ -17,7 +17,7 @@ export default class AddStudent extends Component {
     async AddStudent(course) {
       const odgovor = await studentDataService.post(course);
       if(odgovor.ok){
-        // routing na smjerovi
+        // routing na tecaj
         window.location.href='/students';
       }else{
         // pokaži grešku
@@ -31,8 +31,8 @@ export default class AddStudent extends Component {
       e.preventDefault();
       const datainfo = new FormData(e.target);
   
-      this.dodajPolaznik({
-        First_Name: datainfo.get('First name'),
+      this.addStudent({
+        FIRST_NAME: datainfo.get('First name'),
         Last_Name: datainfo.get('Last name'),
         Address: datainfo.get('Address'),
         OIB: datainfo.get('OIB'),
