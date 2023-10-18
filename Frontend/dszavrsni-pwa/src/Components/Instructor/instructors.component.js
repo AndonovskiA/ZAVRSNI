@@ -42,7 +42,7 @@ export default class Instructors extends Component {
       async deleteInstructor(ID){
     
         const answer = await instructorDataService.delete(ID);
-        if(odgovor.ok){
+        if(answer.ok){
          this.getInstructors();
         }else{
          // alert(odgovor.poruka);

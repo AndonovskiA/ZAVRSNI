@@ -11,23 +11,27 @@ import moment from 'moment';
 
 
 
-export default class DodajGrupa extends Component {
+export default class addCourse extends Component {
 
   constructor(props) {
     super(props);
-    this.dodajGrupa = this.dodajGrupa.bind(this);
+    this.addCourse = this.addCourse.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.dohvatiSmjerovi = this.dohvatiSmjerovi.bind(this);
-
+    //this.getStudent = this.getStudents.bind(this);
+    // this.getCategory= this.getCategories.bind(this);
+    // this.getInstructor= this.getInstructors.bind(this);
     this.state = {
       smjerovi: [],
-      sifraSmjer:0
+      sifraSmjer:0,
+      IDStudents:0,
+      students
     };
   }
 
   componentDidMount() {
     //console.log("Dohvaćam smjerove");
     this.dohvatiSmjerovi();
+    //dohvati sve sto mi treba
   }
 
   async dodajGrupa(grupa) {
