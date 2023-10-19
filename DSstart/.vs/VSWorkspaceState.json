@@ -2,14 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\DrivingSchoolWebApi",
-    "\\DrivingSchoolWebApi\\DSstart",
-    "\\DrivingSchoolWebApi\\DSstart\\Controllers",
-    "\\DrivingSchoolWebApi\\DSstart\\Data",
-    "\\DrivingSchoolWebApi\\DSstart\\Models",
-    "\\DrivingSchoolWebApi\\DSstart\\NameCanNutBeNumber",
-    "\\DrivingSchoolWebApi\\DSstart\\obj\\Debug",
-    "\\DrivingSchoolWebApi\\DSstart\\wwwroot"
+    "\\DrivingSchoolWebApi\\Controllers"
   ],
-  "SelectedNode": "\\DrivingSchoolWebApi\\DSstart\\Program.cs",
+  "SelectedNode": "\\DrivingSchoolWebApi",
   "PreviewInSolutionExplorer": false
 }
