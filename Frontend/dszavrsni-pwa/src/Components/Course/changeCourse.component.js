@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import vehicleDataService from "../../services/vehicle.service";
-import studentDataService from "../../services/student.service";
-import instructorDataService from "../../services/instructor.service";
-import categoryDataService from "../../services/category.service";
+import studentDataService from "../../services/Student.service";
+import instructorDataService from "../../services/Instructor.service";
+import categoryDataService from "../../services/Category.service";
 
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
@@ -22,21 +22,19 @@ export default class ChangeCourse extends Component {
   constructor(props) {
     super(props);
 
-    
-
   //  console.log('Konstruktor PromjeniGrupa');
-
-    
 
     this.course = this.getcourse();
     this.changeCourse = this.changeCourse.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.vehicles = this.getVehicles();
     this.students = this.getStudents();
+    this.instructors= this.getInstructors();
+    this.category=this.getCategory();
     //ovo vidi jel ti treba
-    //this.obrisiStudent = this.deleteStudent.bind(this);
-    //this.searchStudent = this.searchStudent.bind(this);
-    //this.addStudent = this.addStudent.bind(this);
+    this.obrisiStudent = this.deleteStudent.bind(this);
+    this.searchStudent = this.searchStudent.bind(this);
+    this.addStudent = this.addStudent.bind(this);
 
 
     this.state = {
@@ -45,8 +43,10 @@ export default class ChangeCourse extends Component {
       vehicles: [],
       instructors: [],
       categores: [],
-      //IDvehicle:0, i mozda ostalo
-      //foundStudents: []
+      IDVehicle:0,
+      IDCategory:0,
+      IDInstructor:0, 
+      foundStudents: []
     };
   }
 
@@ -54,8 +54,7 @@ export default class ChangeCourse extends Component {
 
 
   async getCourse() {
-    // ovo mora bolje
-    //console.log('Dohvaćam grupu');
+   
     let href = window.location.href;
     let niz = href.split('/'); 
     await courseDataService.getByID(niz[niz.length-1])
@@ -64,11 +63,9 @@ export default class ChangeCourse extends Component {
         g.startTime = moment.utc(g.startTime).format("HH:mm");
         g.startDate = moment.utc(g.startDate).format("yyyy-MM-DD");
         
-        //console.log(g.vrijemePocetka);
         this.setState({
           course: co
         });
-       // console.log(response.data);
       })
       .catch(e => {
         console.log(e);
@@ -80,116 +77,126 @@ export default class ChangeCourse extends Component {
   async changeCourse(course) {
     const answer = await courseDataService.post(course);
     if(odgovor.ok){
-      // routing na smjerovi
+
       window.location.href='/course';
     }else{
-      // pokaži grešku
       console.log(answer);
     }
   }
 
   // pitaj profa jel da dohvacam sve 4 bindane veze na course
   // također za search i delete
-  async dohvatiSmjerovi() {
-    console.log('Dohvaćm smjerove');
-    await SmjerDataService.get()
+  async getVehicles() {
+    console.log('Getting vehicles');
+    await vehicleDataService.get()
       .then(response => {
         this.setState({
-          smjerovi: response.data,
-          sifraSmjer: response.data[0].sifra
+          vehicles: response.data,
+          IDVehicle: response.data[0].ID
         });
 
-       // console.log(response.data);
+      })
+      .catch(e => {
+        console.log(e);
+      });
+  }
+  async getInstructors() {
+    console.log('Getting instructors');
+    await instructorDataService.get()
+      .then(response => {
+        this.setState({
+          instructors: response.data,
+          IDInstructor: response.data[0].ID
+        });
+
       })
       .catch(e => {
         console.log(e);
       });
   }
 
-  async dohvatiPolaznici() {
+  async getCategories() {
+    console.log('Getting categories');
+    await categoryDataService.get()
+      .then(response => {
+        this.setState({
+          categories: response.data,
+          IDCategory: response.data[0].ID
+        });
+
+      })
+      .catch(e => {
+        console.log(e);
+      });
+  }
+
+  
+  async getStudents() {
     let href = window.location.href;
     let niz = href.split('/'); 
-    await GrupaDataService.getPolaznici(niz[niz.length-1])
+    await courseDataService.getStudents(niz[niz.length-1])
        .then(response => {
          this.setState({
-           polaznici: response.data
+           students: response.data
          });
- 
-        // console.log(response.data);
        })
        .catch(e => {
          console.log(e);
        });
    }
 
-   
+   async searchStudent(condition) {
 
-   async traziPolaznik( uvjet) {
-
-    await PolaznikDataService.traziPolaznik( uvjet)
+    await studentDataService.searchStudent(condition)
        .then(response => {
          this.setState({
-          pronadeniPolaznici: response.data
+          foundStudents: response.data
          });
- 
-        // console.log(response.data);
        })
        .catch(e => {
          console.log(e);
        });
    }
 
-   async obrisiPolaznika(grupa, polaznik){
-    const odgovor = await GrupaDataService.obrisiPolaznika(grupa, polaznik);
-    if(odgovor.ok){
-     this.dohvatiPolaznici();
+   async addStudent(course, student){
+    const answer = await courseDataService.addStudent(course, student);
+    if(answer.ok){
+     this.getStudents();
     }else{
-     //this.otvoriModal();
-    }
-   }
-
-   async dodajPolaznika(grupa, polaznik){
-    const odgovor = await GrupaDataService.dodajPolaznika(grupa, polaznik);
-    if(odgovor.ok){
-     this.dohvatiPolaznici();
-    }else{
-    //this.otvoriModal();
+    
     }
    }
  
 
   handleSubmit(e) {
     e.preventDefault();
-    const podaci = new FormData(e.target);
-    console.log(podaci.get('datumPocetka'));
-    console.log(podaci.get('vrijeme'));
-    let datum = moment.utc(podaci.get('datumPocetka') + ' ' + podaci.get('vrijeme'));
+    const datainfo = new FormData(e.target);
+    console.log(datainfo.get('startDate'));
+    console.log(podaci.get('Time'));
+    let DaTe = moment.utc(datainfo.get('startDate') + ' ' + datainfo.get('Time'));
     console.log(datum);
 
-    this.promjeniGrupa({
-      naziv: podaci.get('naziv'),
-      datumPocetka: datum,
-      sifraSmjer: this.state.sifraSmjer
+    this.changeCourse({
+      datumPocetka: DaTe,
     });
     
   }
 
 
   render() { 
-    const { smjerovi} = this.state;
-    const { grupa} = this.state;
-    const { polaznici} = this.state;
-    const { pronadeniPolaznici} = this.state;
+    const { students} = this.state;
+    const { course} = this.state;
+    const { instructors} = this.state;
+    const { foundStudents} = this.state;
 
 
-    const obradiTrazenje = (uvjet) => {
-      this.traziPolaznik( uvjet);
+    const goSearch = (condition) => {
+      this.searchStudent(condition);
     };
 
-    const odabraniPolaznik = (polaznik) => {
-      //console.log(grupa.sifra + ' - ' + polaznik[0].sifra);
-      if(polaznik.length>0){
-        this.dodajPolaznika(grupa.sifra, polaznik[0].sifra);
+    const chosenstudent = (student) => {
+      if(student.length>0){
+        this.addStudent(course.ID, student[0].ID);
       }
      
     };
@@ -217,9 +224,9 @@ export default class ChangeCourse extends Component {
                 </Form.Select>
               </Form.Group>
 
-              <Form.Group className="mb-3" controlId="datumPocetka">
-                <Form.Label>Datum početka</Form.Label>
-                <Form.Control type="date" name="datumPocetka" placeholder="" defaultValue={grupa.datumPocetka}  />
+              <Form.Group className="mb-3" controlId="startDate">
+                <Form.Label>Start Date</Form.Label>
+                <Form.Control type="date" name="startDate" placeholder="" defaultValue={course.startDate}  />
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="vrijeme">
@@ -233,51 +240,51 @@ export default class ChangeCourse extends Component {
 
               <Row>
                 <Col>
-                  <Link className="btn btn-danger gumb" to={`/grupe`}>Odustani</Link>
+                  <Link className="btn btn-danger gumb" to={`/grupe`}>Cancel</Link>
                 </Col>
                 <Col>
                 <Button variant="primary" className="gumb" type="submit">
-                  Promjeni grupu
+                  Change Course 
                 </Button>
                 </Col>
               </Row>
           </Col>
-          <Col key="2" sm={12} lg={6} md={6} className="polazniciGrupa">
-          <Form.Group className="mb-3" controlId="uvjet">
-                <Form.Label>Traži polaznika</Form.Label>
+          <Col key="2" sm={12} lg={6} md={6} className="studentsCourse">
+          <Form.Group className="mb-3" controlId="condition">
+                <Form.Label>Search student/students</Form.Label>
                 
           <AsyncTypeahead
             className="autocomplete"
-            id="uvjet"
-            emptyLabel="Nema rezultata"
-            searchText="Tražim..."
-            labelKey={(polaznik) => `${polaznik.prezime} ${polaznik.ime}`}
+            id="condition"
+            emptyLabel="No results"
+            searchText="Search..."
+            labelKey={(student) => `${student.LAST_NAME } ${student.FIRST_NAME}`}
             minLength={3}
-            options={pronadeniPolaznici}
-            onSearch={obradiTrazenje}
-            placeholder="dio imena ili prezimena"
-            renderMenuItemChildren={(polaznik) => (
+            options={foundStudents}
+            onSearch={goSearch}
+            placeholder="First or last name"
+            renderMenuItemChildren={(student) => (
               <>
-                <span>{polaznik.prezime} {polaznik.ime}</span>
+                <span>{student.LAST_NAME} {student.FIRST_NAME}</span>
               </>
             )}
-            onChange={odabraniPolaznik}
+            onChange={chosenstudent}
           />
           </Form.Group>
           <Table striped bordered hover responsive>
               <thead>
                 <tr>
-                  <th>Polaznik</th>
-                  <th>Akcija</th>
+                  <th>Student</th>
+                  <th>Action</th>
                 </tr>
               </thead>
               <tbody>
-              {polaznici && polaznici.map((polaznik,index) => (
+              {students && students.map((student,index) => (
                 
                 <tr key={index}>
-                  <td > {polaznik.ime} {polaznik.prezime}</td>
+                  <td > {student.FIRST_NAME} {student.LAST_NAME}</td>
                   <td>
-                  <Button variant="danger"   onClick={() => this.obrisiPolaznika(grupa.sifra, polaznik.sifra)}><FaTrash /></Button>
+                  <Button variant="danger"   onClick={() => this.deleteStudent(course.ID, student.ID)}><FaTrash /></Button>
                     
                   </td>
                 </tr>
